@@ -1,0 +1,8 @@
+node_modules/
+data/
+sakura.config.json
+*.apk
+android/*.keystore
+android/build/
+.claude/
+PROGRESS.md

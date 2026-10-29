@@ -1,0 +1,9 @@
+{
+  "stData": "D:/SillyTavern/data/default-user",
+  "extraVertexKeys": [
+    { "file": "D:/keys/my-vertex-service-account.json", "name": "Vertex 备用号" }
+  ],
+  "novelFiles": ["D:/novels/样张小说.txt"],
+  "apkDefaultUrl": "http://192.168.1.100:8291/",
+  "apkAltUrl": ""
+}
