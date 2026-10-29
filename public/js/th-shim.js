@@ -21,6 +21,7 @@
         if (h > lastH && lastH) { if (++grows > 12) return; } else grows = 0;
         lastH = h;
         frame.style.height = h + 'px';
+        LT.frameResized?.();
     };
     const ro = new ResizeObserver(fit);
     const watchBody = () => { if (document.body) ro.observe(document.body); else setTimeout(watchBody, 50); };

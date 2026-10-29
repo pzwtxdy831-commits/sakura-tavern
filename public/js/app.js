@@ -350,7 +350,7 @@ async function showChat(file, chatFile) {
     const composer = h('div', { class: 'composer' }, h('div', { class: 'composer-inner' }, wandBtn, input, sendBtn));
     const view = h('div', { class: 'view chat-view' }, head, h('div', { class: 'chat-wrap' }, scroller), selectBar, composer);
     app.replaceChildren(view);
-    els = { inner, scroller, input, sendBtn, head, selectBar, composer, view };
+    els = { inner, scroller, input, sendBtn, head, selectBar, composer, view, stick: true };
     setGenerating(state.generating);
     renderAll();
     toBottom();
@@ -371,6 +371,7 @@ async function showChat(file, chatFile) {
             if (t < lastTop - 40) showHead(true);
             else if (t > lastTop + 12) showHead(false);
         }
+        els.stick = nearBottom();
         if (Math.abs(t - lastTop) > 12) lastTop = t;
         if (t < 200) loadMore();
     }, { passive: true });
@@ -874,6 +875,8 @@ window.LT = {
     worldNames: () => state.boot?.worlds || [],
     globalWorlds: () => state.settings.globalWorlds || [],
     reloadChat: () => reloadTail(true),
+    // card frontends grow after load; keep the view pinned to the bottom if the reader was there
+    frameResized: () => { if (els.stick && els.scroller) toBottom(); },
     runSlash: (cmd) => runSlash(cmd),
     setScriptButtons(id, list) { scriptButtons.set(id, list); },
     getScriptButtons: (id) => scriptButtons.get(id),
